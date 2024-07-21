@@ -1,59 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Test = () => {
-  // Étape 1: Gérer l'état du formulaire
-  const [formData, setFormData] = useState({
-    make: '',
-    model: '',
-    year: '',
-  });
+  const [students, setStudents] = useState([]);
+  const [inputValue, setInputValue] = useState(''); // État pour gérer l'entrée de l'utilisateur
 
-  // Mettre à jour l'état avec les valeurs du formulaire
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
+  useEffect(() => {
+    fetch('http://localhost:3333/')
+      .then(response => response.json())
+      .then(data => {
+        setStudents(data);
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
+  }, []);
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value); // Mettre à jour l'état avec la valeur de l'entrée
   };
 
-  // Étape 2: Gérer la soumission du formulaire
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Empêcher le rechargement de la page
-
-    try {
-      // Étape 3: Envoyer les données avec Fetch
-      const response = await fetch('http://localhost:3333/cars', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`);
-      }
-
-      // Traiter la réponse
-      const result = await response.json();
-      console.log(result);
-      alert('Voiture ajoutée avec succès!');
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de la voiture:", error);
-      alert("Erreur lors de l'ajout de la voiture.");
-    }
+  const handleSubmit = () => {
+    // Envoyer les données à l'API
+    fetch('http://localhost:3333/', { // Remplacez '/api/endpoint' par votre point de terminaison spécifique
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: inputValue }), // Assurez-vous que la structure de l'objet correspond à ce que votre backend attend
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      // Vous pouvez ici rafraîchir la liste des étudiants ou gérer la réponse comme vous le souhaitez
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   };
 
   return (
     <div>
-      <form id="carForm" onSubmit={handleSubmit}>
-        <input type="text" name="make" placeholder="Marque" required value={formData.make} onChange={handleChange} />
-        <input type="text" name="model" placeholder="Modèle" required value={formData.model} onChange={handleChange} />
-        <input type="number" name="year" placeholder="Année" required value={formData.year} onChange={handleChange} />
-        <button type="submit">Ajouter une voiture</button>
-      </form>
+      <input type="text" value={inputValue} onChange={handleInputChange}></input>
+      <button onClick={handleSubmit}>Envoyer</button>
       <h1>réponse:</h1>
+      <div>
+        {students.map(student => (
+          <div key={student._id}>
+            <p>{student.name}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

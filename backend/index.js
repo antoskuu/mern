@@ -1,10 +1,12 @@
 
-require('dotenv').config({path: 'backend/.env'}); // Importez dotenv au début du fichier
+require('dotenv').config({path: '.env'}); // Importez dotenv au début du fichier
+const cors = require('cors');
 
 const express = require ('express');
 const app = express();
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+app.use(cors());
+app.listen(3333, () => {
+  console.log('Server is running on port 3333');
 });
 
 
@@ -38,6 +40,7 @@ const stud = new Student({
     year: 3,
     subjects: ['DBMS', 'OS', 'Graph Theory', 'Internet Programming']
 });
+
 stud
     .save()
     .then(
