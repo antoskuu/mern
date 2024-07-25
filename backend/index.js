@@ -1,61 +1,45 @@
-
-require('dotenv').config({path: '.env'}); // Importez dotenv au début du fichier
+require('dotenv').config({path: '.env'});
 const cors = require('cors');
-
-const express = require ('express');
-const app = express();
-app.use(cors());
-app.listen(3333, () => {
-  console.log('Server is running on port 3333');
-});
-
-
-
+const express = require('express');
 const mongoose = require('mongoose');
 
-mongoose.connect(
-    process.env.MONGODB_URI, 
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
+const app = express();
 
+// Utilisez express.json() pour parser les corps des requêtes JSON
+app.use(express.json());
+app.use(cors());
 
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
-const studentSchema = new mongoose.Schema({
-    roll_no: Number,
+const userSchema = new mongoose.Schema({
+    email: String,
     name: String,
-    year: Number,
-    subjects: [String]
+    password: String
 });
 
+const User = mongoose.model('User', userSchema);
 
-const Student = mongoose.model('Student', studentSchema);
-
-
-const stud = new Student({
-    roll_no: 1001,
-    name: 'Madison Hyde',
-    year: 3,
-    subjects: ['DBMS', 'OS', 'Graph Theory', 'Internet Programming']
-});
-
-stud
-    .save()
-    .then(
-        () => console.log("One entry added"), 
-        (err) => console.log(err)
-    );
-
-
+// Route GET pour tester
 app.get('/', (req, res) => {
-    Student.find({})
-        .then(found => {
-            res.send(found);
-        })
+    User.find({})
+        .then(found => res.send(found))
         .catch(err => {
             console.log("Error occurred, " + err);
             res.send("Some error occurred!");
         });
+});
+
+// Route POST pour ajouter un utilisateur
+app.post('/', (req, res) => {
+    const newUser = new User(req.body);
+    newUser.save()
+        .then(() => res.status(201).send("User added successfully"))
+        .catch(err => res.status(400).send(err));
+});
+
+app.listen(3333, () => {
+  console.log('Server is running on port 3333');
 });
