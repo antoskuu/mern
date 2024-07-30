@@ -1,3 +1,5 @@
 backend/.env
 backend/node_modules
 frontend/app_name/node_modules
+fronted/appname/.env
+.env

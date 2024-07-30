@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,12 +23,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
+    <nav className="navbar">
       <Link to="/" className="nav-link">Home</Link>
       <Link to="/autre" className="nav-link">Autre</Link>
       <Link to="/test" className="nav-link">Test</Link>
-      <Link to="/suivi" className="nav-link">Suivi</Link>
-      <input type="text" placeholder="Rechercher..." value={searchTerm} onChange={handleSearchChange} onKeyDown={handleKeyDown} />
+      <Link to="/stemplayer" className="nav-link">Stemplayer</Link>
+      <input className='searchbar'type="text" placeholder="Rechercher..." value={searchTerm} onChange={handleSearchChange} onKeyDown={handleKeyDown} />
       <button onClick={handleSearch}>Rechercher</button>
     </nav>
   );

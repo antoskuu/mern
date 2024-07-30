@@ -1,0 +1,54 @@
+.reorder-group {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  gap: 10px; /* Espacement entre les éléments */
+}
+
+.reorder-item {
+  padding: 10px;
+  background-color: #000000;
+  color: white;
+  border-radius: 10px;
+  cursor: grab;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Ajoute une ombre derrière chaque élément */
+  transition: box-shadow 0.5s;
+}
+
+.reorder-item:active {
+  cursor: grabbing;
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Ajoute une ombre derrière chaque élément */
+  transition: box-shadow 0.5s;
+
+}
+
+.reorder-item img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid rgb(60, 60, 60);
+  color: rgb(61, 61, 61);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ajoute une ombre derrière chaque élément */
+  transition: box-shadow 0.5s;
+  width: 150px;
+  height: 210px;
+  font-size: 2em; /* Taille du symbole + */
+  transition: box-shadow 0.5s, color 0.5s, border 0.5s;
+}
+
+.add-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Ajoute une ombre plus prononcée au survol */
+  border: 1px solid white;
+  color: white;
+}

@@ -12,12 +12,12 @@ const Recherche = () => {
     setTermDeRecherche(query);
 
     const rechercher = async (query) => {
-      fetch(`https://www.theaudiodb.com/api/v1/json/2/discography.php?s=${query}`)
+      const apiUrl = process.env.REACT_APP_API_KEY;
+      console.log(apiUrl);
+      fetch(`https://ws.audioscrobbler.com/2.0/?method=album.search&album=${query}&api_key=${apiUrl}&format=json`)
         .then(response => response.json())
         .then(json => {
-          // Supposons que l'API retourne un objet avec un tableau sous la clé 'album'
-          // Ajustez cette partie en fonction de la structure réelle de votre réponse
-          const albums = json.album || []; // Utilisez une clé qui existe dans votre réponse
+          const albums = json.results.albummatches.album || [];
           setResultats(albums);
         })
         .catch(error => console.error(error));
@@ -31,9 +31,19 @@ const Recherche = () => {
   return (
     <div>
       <h2>Résultats de recherche pour: {termDeRecherche}</h2>
-      
       <div>
-        {resultats.length > 0 ? (<pre>{JSON.stringify(resultats, null, 2)}</pre>): resultats.length===0?('No results found'):( 'Loading...')}
+        {resultats.length > 0 ? (
+          <div>
+            {resultats.map((album, index) => (
+              <div key={index}>
+                <h3>{album.name} by {album.artist}</h3>
+                <img src={album.image.find(img => img.size === 'large')['#text']} alt={album.name} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          resultats.length === 0 ? 'No results found' : 'Loading...'
+        )}
       </div>
     </div>
   );
