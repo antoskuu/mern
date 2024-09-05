@@ -1,0 +1,127 @@
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchbar {
+    flex: 1;
+}
+
+.clear-button {
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.clear-button:hover {
+    background-color: red;
+    border-radius: 50px;
+}
+
+
+.modal {
+    background-color: grey;
+    border-radius: 50px;
+    padding: 20px 50px;
+    margin: 20px 20px;
+
+}
+
+.card-recherche {
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Ajoute une ombre derrière chaque élément */
+    transition: box-shadow 0.5s;
+    width: 150px; /* Largeur fixe */
+    height: 210px; /* Hauteur fixe */
+    overflow: hidden; /* Cache le contenu qui dépasse */
+    text-overflow: ellipsis; /* Ajoute des points de suspension si le texte dépasse */
+    white-space: nowrap; /* Empêche le texte de s'étendre sur plusieurs lignes */
+  }
+
+.card-recherche:hover {
+    background-color: #2d2d2d;
+
+  }
+
+  .image-card {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 7px;
+  }
+
+  .text-card {
+    overflow: hidden; /* Cache le contenu qui dépasse */
+    text-overflow: ellipsis; /* Ajoute des points de suspension si le texte dépasse */
+    white-space: nowrap; /* Empêche le texte de s'étendre sur plusieurs lignes */
+  }
+
+.reorder-item {
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    border-radius: 10px;
+    cursor: grab;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Ajoute une ombre derrière chaque élément */
+    transition: box-shadow 0.5s;
+  }
+
+.resultats {
+    display: flex;
+    flex-direction: row; /* Assurez-vous que les éléments sont alignés en ligne */
+    flex-wrap: wrap; /* Permet le retour à la ligne */
+    justify-content: flex-start; /* Aligne les éléments au début de la ligne */
+    gap: 20px; /* Définit un espacement uniforme entre les éléments */
+    
+}
+
+.button-type {
+    color: white; /* Définit la couleur du texte en blanc */
+    text-decoration: none; /* Supprime le soulignement par défaut des liens */
+    padding: 10px 20px; /* Ajuste le padding pour donner plus d'espace autour du texte */
+    transition: background-color 0.3s, color 0.3s, border-radius 0.3s; /* Ajoute une animation */
+    border: none;
+}
+.button-type:hover {
+    background-color: white;
+    color: black;
+    border-radius: 30px;
+    padding: 10px 20px;
+    border:none;
+}
+
+
+.loading {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}        
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal {
+    background-color: rgb(166, 166, 166);
+    border-radius: 50px;
+    padding: 5px 50px;
+    animation: fadeIn 0.5s ease-in-out, fadeOut 0.5s ease-in-out;   
+}

@@ -28,8 +28,6 @@ const Navbar = () => {
       <Link to="/autre" className="nav-link">Autre</Link>
       <Link to="/test" className="nav-link">Test</Link>
       <Link to="/stemplayer" className="nav-link">Stemplayer</Link>
-      <input className='searchbar'type="text" placeholder="Rechercher..." value={searchTerm} onChange={handleSearchChange} onKeyDown={handleKeyDown} />
-      <button onClick={handleSearch}>Rechercher</button>
     </nav>
   );
 };

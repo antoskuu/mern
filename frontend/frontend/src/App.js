@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Autre from './pages/Autre';
 import Test from './pages/Test';
 import Stemplayer from './pages/Stemplayer';
-import Recherche from './pages/Recherche';
 
 const App = () => {
   return (
@@ -16,7 +15,6 @@ const App = () => {
         <Route path="/autre" element={<Autre />} />
         <Route path="/test" element={<Test/>} />
         <Route path="/stemplayer" element={<Stemplayer />} />
-        <Route path='/recherche' element={<Recherche />} />
       </Routes>
     </div>
   );

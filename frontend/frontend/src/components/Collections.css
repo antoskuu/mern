@@ -1,3 +1,17 @@
+.collection {
+  background-color: rgb(26, 26, 26);
+  margin: 15px;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.titre_collection {
+  color: rgb(117, 117, 117);
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .reorder-group {
   display: flex;
   flex-direction: row;
@@ -5,7 +19,8 @@
   gap: 10px; /* Espacement entre les éléments */
 }
 
-.reorder-item {
+.card {
+  position: relative; /* Permet le positionnement absolu des enfants */
   padding: 10px;
   background-color: #000000;
   color: white;
@@ -13,8 +28,34 @@
   cursor: grab;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Ajoute une ombre derrière chaque élément */
   transition: box-shadow 0.5s;
+  width: 150px; /* Largeur fixe */
+  height: 210px; /* Hauteur fixe */
+  overflow: hidden; /* Cache le contenu qui dépasse */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte dépasse */
+  white-space: nowrap; /* Empêche le texte de s'étendre sur plusieurs lignes */
 }
 
+
+
+.image-card {
+  display: block; /* Assure que l'image est un bloc */
+  margin: 0 auto; /* Centre l'image horizontalement */
+  width: 100%; /* Assure que l'image prend toute la largeur disponible */
+  height: auto; /* Maintient le ratio de l'image */
+  object-fit: cover; /* Assure que l'image couvre toute la zone sans déformation */
+  border-radius: 7px;
+}
+
+.card-button {
+  position: absolute; /* Positionne le bouton de manière absolue par rapport à la carte */
+  top: 5px; /* Ajustez cette valeur selon vos besoins */
+  right: 5px; /* Ajustez cette valeur selon vos besoins */
+  border: none;
+  color: white;
+  cursor: pointer;
+  background-color: transparent; /* Rend le fond transparent */
+  font-size: 1.2em; /* Ajustez la taille du bouton si nécessaire */
+}
 .reorder-item:active {
   cursor: grabbing;
 
@@ -41,8 +82,8 @@
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ajoute une ombre derrière chaque élément */
   transition: box-shadow 0.5s;
-  width: 150px;
-  height: 210px;
+  width: 160px;
+  height: 240px;
   font-size: 2em; /* Taille du symbole + */
   transition: box-shadow 0.5s, color 0.5s, border 0.5s;
 }
@@ -51,4 +92,38 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Ajoute une ombre plus prononcée au survol */
   border: 1px solid white;
   color: white;
+}
+
+.card-button {
+  position: absolute; /* Positionne le bouton de manière absolue par rapport à la carte */
+  top: -13px; /* Place le bouton tout en haut */
+  right: -18px; /* Place le bouton tout à droite */
+  margin: 0; /* Ignore les marges */
+  border: none;
+  color: rgb(65, 65, 65);
+  cursor: pointer;
+  background-color: transparent; /* Rend le fond transparent */
+  font-size: 0.8em; /* Ajustez la taille du bouton si nécessaire */
+}
+.search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid rgb(163, 255, 153);
+  color: rgb(163, 255, 153);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ajoute une ombre derrière chaque élément */
+  transition: box-shadow 0.5s;
+  width: 160px;
+  height: 240px;
+  font-size: 2em; /* Taille du symbole + */
+  transition: box-shadow 0.5s, color 0.5s, border 0.5s;
+}
+.search-button:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Ajoute une ombre plus prononcée au survol */
+  border: 1px solid rgb(26, 255, 0);
+  color: rgb(26, 255, 0);
 }
