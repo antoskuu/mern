@@ -1,28 +1,45 @@
+.navbar-container {
+    display: flex;
+    padding: 10px 0;
+}
+
 .navbar {
-    background-color: rgb(40, 40, 40); /* Définit le fond en noir */
-    color: white; /* Change la couleur du texte en blanc pour un meilleur contraste */
-    padding: 5px 7px; /* Ajuste le padding pour donner plus d'espace autour du texte */
+    gap: 5px; /* Ajoute de l'espace entre les liens */
+
+    background-color: rgb(255, 255, 255); /* Définit le fond en blanc */
+    color: rgb(0, 0, 0); /* Change la couleur du texte en noir pour un meilleur contraste */
+    padding: 1px 2px; /* Ajuste le padding pour donner plus d'espace autour du texte */
     border-radius: 50px; /* Arrondit les coins pour donner l'effet pilule */
     display: flex; /* Utilise flexbox pour le positionnement des éléments */
-    align-items: center; /* Centre les éléments verticalement */
-    width: 100wh; /* S'étend sur toute la largeur de la page */
-    margin: 2px 10px; /* Ajoute un espace autour de la navbar */
+    justify-content: center; /* Centre les éléments horizontalement */
+    width: auto; /* Ajuste la largeur automatiquement en fonction du contenu */
+    max-width: 80%; /* Facultatif : limite la largeur maximale */
+    margin: 0 auto; /* Centre la navbar horizontalement */
 }
 
 .nav-link {
-    color: white; /* Définit la couleur du texte en blanc */
+    color: rgb(0, 0, 0); /* Définit la couleur du texte en noir */
     text-decoration: none; /* Supprime le soulignement par défaut des liens */
     padding: 10px 20px; /* Ajuste le padding pour donner plus d'espace autour du texte */
     transition: background-color 0.3s, color 0.3s, border-radius 0.3s; /* Ajoute une animation */
 }
 
 .nav-link:hover {
-    background-color: white;
-    color: black;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     border-radius: 30px;
     padding: 10px 20px;
-    
 }
+
+.nav-link:active,
+.nav-link:focus,
+.nav-link.clicked {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+    padding: 10px 20px;
+}
+
 .searchbar {
     display: flex; /* Utilise flexbox pour le positionnement des éléments */
     padding: 10px 20px; /* Ajuste le padding pour donner plus d'espace autour du texte */
@@ -40,6 +57,4 @@ button {
     color: white; /* Change la couleur du texte en blanc pour un meilleur contraste */
     border-radius: 50px; /* Arrondit les coins pour donner l'effet pilule */
     padding: 10px 20px; /* Ajuste le padding pour donner plus d'espace autour du texte */
-    margin-left: 10px; /* Ajoute un espace entre le bouton et la searchbar */
-    cursor: pointer; /* Change le curseur en main pour indiquer que le bouton est cliquable */
 }

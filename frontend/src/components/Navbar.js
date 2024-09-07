@@ -23,12 +23,14 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="nav-link">Home</Link>
-      <Link to="/autre" className="nav-link">Autre</Link>
-      <Link to="/test" className="nav-link">Test</Link>
-      <Link to="/stemplayer" className="nav-link">Stemplayer</Link>
-    </nav>
+    <div className="navbar-container">
+      <nav className="navbar">
+        <Link to="/" className="nav-link">Home</Link>
+        <Link to="/autre" className="nav-link">Autre</Link>
+        <Link to="/test" className="nav-link">Test</Link>
+        <Link to="/stemplayer" className="nav-link">Stemplayer</Link>
+      </nav>
+    </div>
   );
 };
 
