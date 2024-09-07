@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Home.css';
+import fondImage from './fond.jpg'; // Importez l'image
+import fleche from './fleche.png'; // Importez l'image
+
 
 const Home = () => {
   const [email, setEmail] = useState('');
@@ -14,14 +17,14 @@ const Home = () => {
       await axios.post('http://localhost:5000/api/emails/schedule', { email, subject, body, sendAt });
       alert('Email scheduled successfully');
     } catch (error) {
-      console.error('Error scheduling email:', error); // Ajoutez cette ligne pour afficher l'erreur dans la console
+      console.error('Error scheduling email:', error);
       alert('Error scheduling email');
     }
   };
 
   return (
     <div className='page'>
-      <h1>Schedule an Email</h1>
+      <h1 className='titre'>Votre capsule</h1>
       <form onSubmit={handleSubmit}>
         <input 
           type="email" 
@@ -49,8 +52,18 @@ const Home = () => {
           onChange={(e) => setSendAt(e.target.value)} 
           required 
         />
-        <button type="submit">Schedule Email</button>
+        
       </form>
+      <button onClick={handleSubmit}className="send-button" >
+          <img className="image-logo"src={fondImage} alt="Icon" />
+          <div className="button-text">
+            <span className="main-text">Envoyer la capsule</span>
+            <span className="sub-text">
+  {sendAt ? `Prévu pour le ${sendAt}` : "Date à définir"}
+            </span>            
+          </div>
+          <img className="fleche" src={fleche} />
+        </button>
     </div>
   );
 }

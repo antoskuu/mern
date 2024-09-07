@@ -1,8 +1,21 @@
 .page {
   padding: 20px;
 }
+.titre {
+  text-align: center;
+  justify-content: center;
+  font-size: 100px;
+  font-weight: bold;
+  color: transparent; /* Rendre le texte transparent */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1)); /* Dégradé pour effet glossy */
+  -webkit-background-clip: text; /* Utiliser le dégradé comme couleur de texte */
+  background-clip: text;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3), 0 0 10px rgba(255, 255, 255, 0.2); /* Ombres pour effet glossy */
+  margin-top: -20px; /* Ajuster cette valeur pour déplacer le titre plus haut */
 
+}
 textarea {
+  background-color: rgba(0, 0, 0, 0.1);
   width: 100%;
   height: 300px;
   padding: 20px;
@@ -11,6 +24,9 @@ textarea {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 input[type="date"], input[type="time"] {
@@ -31,7 +47,76 @@ input[type="date"], input[type="time"] {
   margin-top: 20px;
 }
 
-.image-preview img {
-  max-width: 100px;
-  margin: 10px;
+.send-button {
+  height: 15%; /* Hauteur de l'image */
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff; /* Couleur de fond */
+  color: rgb(0, 0, 0); /* Couleur du texte */
+  padding: 20px 20px; /* Padding pour agrandir le bouton */
+  border: none; /* Supprime la bordure */
+  border-radius: 10px; /* Arrondit les coins */
+  font-size: 18px; /* Taille de la police */
+  cursor: pointer; /* Change le curseur au survol */
+  transition: background-color, 0.3s transform 0.3s; /* Transition pour l'effet de survol */
+  position: absolute; /* Positionnement absolu */
+  bottom: 30px; /* Distance du bas de la page */
+  right: 40px; /* Distance de la droite de la page */
+}
+
+.send-button::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 1px solid #ffffff; /* Couleur et épaisseur du contour */
+  border-radius: 15px; /* Arrondit les coins du contour */
+  pointer-events: none; /* Permet de cliquer à travers le contour */
+  transition: top 0.3s, left 0.3s, right 0.3s, bottom 0.3s, border-radius 0.3s; /* Transition pour l'effet de survol */
+}
+
+.send-button:hover {
+  background-color: #ffffff; /* Couleur de fond au survol */
+transform: scale(1.1) ;
+}
+
+.send-button:hover::before {
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border-radius: 10px;
+}
+
+.send-button .image-logo {
+  margin-right: 20px; /* Espace entre l'image et le texte */
+  width: 100px; /* Largeur de l'image */
+  height: 100px; /* Hauteur de l'image */
+  border-radius: 10px;
+}
+.send-button .fleche {
+  margin-left: 20px; /* Espace entre l'image et le texte */
+  width: 40px; /* Largeur de l'image */
+  height: 40px; /* Hauteur de l'image */
+}
+.send-button .button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+}
+
+.send-button .button-text .main-text {
+  font-weight: bold; /* Texte en gras */
+  font-size: 25px; /* Texte plus petit */
+
+
+}
+
+.send-button .button-text .sub-text {
+  font-size: 17px; /* Texte plus petit */
 }
