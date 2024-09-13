@@ -12,14 +12,17 @@ const Home = () => {
   const [body, setBody] = useState('');
   const [sendAt, setSendAt] = useState('');
   const [isClicked, setIsClicked] = useState(false);
+  const [selectedPosition, setSelectedPosition] = useState(null);
 
-  const handleButtonClick = () => {
-    setIsClicked(!isClicked);
+
+  const handleMapClick = (e) => {
+    e.stopPropagation(); // Arrête la propagation de l'événement de clic
+    setIsClicked(true);
   };
 
-  const handleImageClick = (e) => {
+  const handleCloseMapClick = (e) => {
     e.stopPropagation(); // Arrête la propagation de l'événement de clic
-    setIsClicked(!isClicked);
+    setIsClicked(false);
   };
 
   const handleSubmit = async (e) => {
@@ -31,6 +34,10 @@ const Home = () => {
       console.error('Error scheduling email:', error);
       alert('Error scheduling email');
     }
+  };
+
+  const handleMapClickEvent = (e) => {
+    setSelectedPosition(e.latlng);
   };
 
   return (
@@ -65,16 +72,31 @@ const Home = () => {
           required 
         />
       </form>
-      <button onClick={handleSubmit} className="send-button">
-      <div onClick={handleImageClick} className={`image-logo ${isClicked ? 'clicked' : ''}`}>
-        <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: "300px", width: "100%" }}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-        </MapContainer>
-      </div>
-        <img onClick={handleImageClick} className={`image-logo ${isClicked ? 'clicked' : ''}`} src={fondImage} alt="Icon" />
+      
+      <button onClick={handleSubmit} className={`send-button ${isClicked ? 'clicked' : ''}`}>
+        <div onClick={handleMapClick} className={`image-logo no-hover ${isClicked ? 'clicked' : ''}`}>
+          {isClicked && (
+            <button onClick={handleCloseMapClick} className="map-button no-hover">Close</button>
+          )}
+          <MapContainer 
+            center={[51.505, -0.09]} 
+            zoom={13}
+            className="custom-map-style"
+            style={{ height: "100%", width: "100%" }}
+            
+            onClick={handleMapClickEvent}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            {selectedPosition && (
+              <Marker position={selectedPosition}>
+                <Popup>Selected Location</Popup>
+              </Marker>
+            )}
+          </MapContainer>
+        </div>
         <div className="button-text">
           <span className="main-text">Envoyer la capsule</span>
           <span className="sub-text">
@@ -83,7 +105,6 @@ const Home = () => {
         </div>
         <img className="fleche" src={fleche} alt="Fleche" />
       </button>
-      
     </div>
   );
 }

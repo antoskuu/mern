@@ -89,7 +89,7 @@ input[type="date"], input[type="time"] {
   content: '';
   position: absolute;
   top: -5px;
-  left: -5px;
+  left: -160px;
   right: -5px;
   bottom: -5px;
   border: 1px solid #ffffff; /* Couleur et épaisseur du contour */
@@ -100,21 +100,27 @@ input[type="date"], input[type="time"] {
 
 .send-button:hover {
   background-color: #ffffff; /* Couleur de fond au survol */
-transform: scale(1.1) ;
+transform: scale(1.1);
+}
+
+.send-button.clicked {
+  background-color: #ffffff; /* Couleur de fond au survol */
+transform: scale(1.1);
 }
 
 .send-button:hover::before {
   top: 0px;
-  left: 0px;
+  left: -140px;
   right: 0px;
   bottom: 0px;
   border-radius: 10px;
 }
 
 .send-button .image-logo {
-  margin-right: 20px; /* Espace entre l'image et le texte */
-  width: 100px; /* Largeur de l'image */
-  height: 100px; /* Hauteur de l'image */
+  position: absolute; /* L'image ne prendra plus de place dans le bouton */
+  margin-right: 460px; /* Espace entre l'image et le texte */
+  width: 120px; /* Largeur de l'image */
+  height: 120px; /* Hauteur de l'image */
   border-radius: 10px;
   transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
 }
@@ -122,9 +128,12 @@ transform: scale(1.1) ;
   transform: scale(1.1);
 }
 .send-button .image-logo.clicked{
-  transform: translate(-50%, -150%) scale(1.5); /* Sortir l'image du bouton */
-  width: 100px; /* Agrandir l'image */
-  height: 100px; /* Agrandir l'image */
+  transform: translate(50%, -100%); /* Sortir l'image du bouton */
+  height: 300px;
+  width: 300px;
+
+  
+
 }
 
 
@@ -137,6 +146,8 @@ transform: scale(1.1) ;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+    transition: font-size 0.3s ease; /* Ajoutez la transition pour la taille de la police */
+
   
 }
 
@@ -149,6 +160,8 @@ transform: scale(1.1) ;
   font-size: 17px; /* Texte plus petit */
 }
 
+
+
 .map-container {
   margin-top: 20px;
   width: 490px; /* Largeur complète */
@@ -159,7 +172,9 @@ transform: scale(1.1) ;
 }
 
 .custom-map-style {
-  border-radius: 15px; /* Coins arrondis */
+  height: 200px; /* Hauteur fixe */
+  width: 100%; /* Largeur complète */
+  border-radius: 10px; /* Coins arrondis */
   overflow: hidden; /* Masquer les débordements */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre */
   
@@ -169,3 +184,4 @@ transform: scale(1.1) ;
   height: 100%; /* Assurez-vous que la carte prend toute la hauteur du conteneur */
   width: 100%; /* Assurez-vous que la carte prend toute la largeur du conteneur */
 }
+
